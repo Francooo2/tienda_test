@@ -1,0 +1,42 @@
+* {
+    margin    : 0;
+    padding   : 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --background-color    : hsl(0, 0%, 90%);
+    --background-cardcolor: hsl(0, 0%, 98%);
+    --element-color       : hsl(0, 0%, 35%);
+}
+
+body {
+    display         : flex;
+    flex-direction  : column;
+    min-height      : 100vh;
+    font-family     : 'Hubballi', cursive;
+    background-color: var(--background-color);
+}
+.header {
+    display         : flex;
+    justify-content : space-around;
+    padding         : 0.5em;
+    align-items     : center;
+    background-color: var(--background-cardcolor);
+    color           : var(--element-color);
+    box-shadow      : rgba(0, 0, 0, 0.24) 0px 2px 8px;
+}
+.main {
+    flex: auto;
+}
+.footer {
+    align-self      : flex-end;
+    width           : 100%;
+    padding         : 1em;
+    text-align      : center;
+    font-size       : 1.5em;
+    font-weight     : bold;
+    background-color: var(--background-cardcolor);
+    color           : var(--element-color);
+    box-shadow      : rgba(0, 0, 0, 0.24) 0px -2px 8px;
+}
