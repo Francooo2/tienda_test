@@ -11,7 +11,7 @@ export const filterNameProduct = (input, arrayNames) => {
             const product = await getMainData(`http://localhost:3000/${input.value.toUpperCase()}`)
             
             for (let index = 0; index < cards.length; index++) {
-                if ( cards[index].children[1].textContent !== product[0].name.toUpperCase().trim() ) {
+                if ( cards[index].children[2].textContent !== product[0].name.toUpperCase().trim() ) {
                     cards[index].classList.add('hide')
                 }
             }

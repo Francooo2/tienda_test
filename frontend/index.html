@@ -16,13 +16,13 @@
 
     <header class="header">
         <h1>Bsale Test</h1>
-        <div>
-            <input class="input" type="text" name="search" id="search" placeholder="Busque un producto..."
+        <div class="header__blocksearch">
+            <input class="header__search" type="text" name="search" id="search" placeholder="Busque un producto..."
                 list="listid">
             <datalist id="listid"></datalist>
-            <i class="fas fa-search"></i>
+            <i class="fas fa-search header__ifirst"></i>
         </div>
-        <i class="fas fa-shopping-cart"></i>
+        <i class="fas fa-shopping-cart header__isecond" id="iconprincipal"></i>
     </header>
 
     <main class="main">
@@ -33,6 +33,15 @@
     <footer class="footer">
         2022
     </footer>
+
+
+    <aside class="lateral" id="lateral">
+        <label for="total">Total compra:</label>
+        <input type="text" id="total" value="0" name="total" class="lateral__input" readonly>
+        <ul id="listItems" class="listItems">
+        </ul>
+    </aside>
+
 
     <script type="module" src="assets/js/script.js"></script>
 </body>

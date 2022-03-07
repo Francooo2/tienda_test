@@ -2,8 +2,8 @@ const pool = require('../db')
 
 const getProducts = async (req, res) => {
     
-    const sql = 'SELECT RTRIM(UPPER(name)) AS nameProduct, url_image, price, category FROM product ORDER BY category'
-
+    const sql = 'SELECT RTRIM(UPPER(name)) AS nameProduct, url_image, price, discount, (SELECT name FROM category WHERE id = product.category) AS nameCategory FROM product ORDER BY nameCategory DESC'
+    
     await pool.query(sql, (error, results) => {
         if (error) {
             res.send('Servicio no disponible.')
