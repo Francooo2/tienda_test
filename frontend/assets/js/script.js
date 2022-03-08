@@ -1,5 +1,6 @@
 import { getMainData, renderCards } from './dataFunctions.js'
 import { filterNameProduct } from './filterFunctions.js'
+import { getItemsLocalStorage, addItem, removeItem } from './generalFunctions.js'
 
 let   nameProducts  = []
 const dataList      = document.getElementById('listid')
@@ -10,30 +11,28 @@ const iconPrincipal = document.getElementById('iconprincipal')
 const lateral       = document.getElementById('lateral')
 let   listItems     = document.getElementById('listItems')
 let   total         = document.getElementById('total')
+let   makeSale      = document.getElementById('btn')
+let   closearrow    = document.getElementById('closearrow')
+let   spinner       = document.getElementById('spinner')
 
 window.addEventListener('load', async () => {
 
     const data = await getMainData('http://localhost:3000/')
     console.log(data)
 
+    if ( typeof data === 'string' ) {
+        alert(data)
+        return
+    }
+
     let hash = {}
     let filterData = data.filter(o => hash[o.nameProduct] ? false : hash[o.nameProduct] = true)
     
+    spinner.classList.add('hide')
     nameProducts = renderCards(filterData, nameProducts, dataList, parentElement, imgDefault)
     
-    for (let i = 1; i <= localStorage.length; i++) {
+    getItemsLocalStorage(listItems, total)
     
-        let position    = localStorage[i].indexOf('$')
-        let product     = localStorage[i].substring(0, position - 1)
-        let parcial     = localStorage[i].substring(position + 1, localStorage[i].length)
-            total.value = parseInt(total.value) + parseInt(parcial)
-        
-        listItems.innerHTML += `<li id="${i}" >
-            <p class="lateral__product">${product}</p>
-            <input type="text" value="${parcial}" class="lateral__input" readonly>
-            <i class="fa fa-window-close lateral__close"</i>
-        </li>`
-     }
 })
 
 filterNameProduct(inputSearch, nameProducts)
@@ -42,33 +41,34 @@ iconPrincipal.addEventListener('click', () => {
     lateral.classList.toggle('show')
 })
 
-parentElement.addEventListener('click', (e) => {
-    if ( e.target.classList[2] === 'card__plus' ) {
-        lateral.classList.add('show')
-        
-        let id          = document.getElementsByTagName('li').length + 1
-        let product     = e.target.parentNode.parentNode.children[2].textContent
-        let parcial     = parseInt(e.target.parentNode.children[0].textContent.substring(1, e.target.parentNode.children[0].textContent.length)) * parseInt(e.target.parentNode.children[1].value)
-            total.value = parseInt(total.value) + parcial
-        
-
-        listItems.innerHTML += `<li id="${id}" >
-            <p class="lateral__product">${product}</p>
-            <input type="text" value="${parcial}" class="lateral__input" readonly>
-            <i class="fa fa-window-close lateral__close"</i>
-        </li>`
-
-        localStorage.setItem(`${localStorage.length + 1}`, `${product}$${parcial}`)
-    }
+closearrow.addEventListener('click', () => {
+    lateral.classList.toggle('show')
 })
 
-lateral.addEventListener('click', (e) => {
-    if ( e.target.classList[2] === 'lateral__close' ) {
-            total.value = parseInt(total.value) - parseInt(e.target.parentNode.children[1].value)
-        let child       = e.target.parentNode
-        let id          = e.target.parentNode.id
-        listItems.removeChild(child)
-        localStorage.removeItem(id)
-    }
-})
+addItem(parentElement, lateral, listItems, total)
 
+removeItem(listItems, total)
+
+makeSale.addEventListener('click', () => {
+
+    let elements = document.getElementsByTagName('li')
+    
+    if ( elements.length === 0 ) {
+        alert('Estimado cliente, favor agregar productos a su carro.')
+        return
+    }
+
+    let message  = confirm('¿Esta seguro de su compra?')
+    
+    if ( message === true ) {
+        alert(`Su compra de un monto de $ ${total.value} ha sido realizada con exito, vuelva pronto.`)
+        for (let index = elements.length - 1; index >= 0; index--) {
+            listItems.removeChild(elements[index])
+        }
+        localStorage.clear()
+        total.value = '0'
+    } else {
+        alert('Su compra ha sido cancelada.')
+    }
+
+})

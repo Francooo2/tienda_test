@@ -5,7 +5,7 @@ export const getMainData = async (url) => {
         const products = await response.json()
         return products
     } catch (error) {
-        return 'Datos no disponibles'
+        return 'Productos no disponibles en este momento, favor intentar en unos minutos nuevamente.'
     }
 
 }

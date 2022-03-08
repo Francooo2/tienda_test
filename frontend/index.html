@@ -26,6 +26,7 @@
     </header>
 
     <main class="main">
+        <div class="spinner" id="spinner"></div>
         <div class="root" id="root">
         </div>
     </main>
@@ -38,6 +39,8 @@
     <aside class="lateral" id="lateral">
         <label for="total">Total compra:</label>
         <input type="text" id="total" value="0" name="total" class="lateral__input" readonly>
+        <button type="button" class="lateral__btn" id="btn">Realizar Compra</button>
+        <span class="lateral__arrow" id="closearrow">◄</span>
         <ul id="listItems" class="listItems">
         </ul>
     </aside>
