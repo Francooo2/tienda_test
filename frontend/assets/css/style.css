@@ -226,3 +226,21 @@ li {
         transform: rotate(360deg);
     }
 }
+
+@media (max-width: 838px) {
+    .main {
+        margin-top: 145px;
+    }
+}
+
+@media (max-width: 561px) {
+    .main {
+        margin-top: 175px;
+    }
+}
+
+@media (max-width: 320px) {
+    .main {
+        margin-top: 200px;
+    }
+}

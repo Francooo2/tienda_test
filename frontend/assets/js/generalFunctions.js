@@ -24,6 +24,7 @@ export const getItemsLocalStorage = (list, totalInput) => {
 export const addItem = (parent, lateral, list, totalInput) => {
 
     parent.addEventListener('click', (e) => {
+        
         if ( e.target.classList[2] === 'card__plus' ) {
             lateral.classList.add('show')
             
@@ -63,4 +64,32 @@ export const removeItem = (list, totalInput) => {
             localStorage.removeItem(id)
         }
     })
+}
+
+export const sale = (button, list, totalInput) => {
+    
+    button.addEventListener('click', () => {
+
+        let elements = document.getElementsByTagName('li')
+        
+        if ( elements.length === 0 ) {
+            alert('Estimado cliente, favor agregar productos a su carro.')
+            return
+        }
+    
+        let message  = confirm('¿Esta seguro de su compra?')
+        
+        if ( message === true ) {
+            alert(`Su compra de un monto de $ ${total.value} ha sido realizada con exito, vuelva pronto.`)
+            for (let index = elements.length - 1; index >= 0; index--) {
+                list.removeChild(elements[index])
+            }
+            localStorage.clear()
+            totalInput.value = '0'
+        } else {
+            alert('Su compra ha sido cancelada.')
+        }
+    
+    })
+
 }

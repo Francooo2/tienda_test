@@ -1,6 +1,6 @@
 import { getMainData, renderCards } from './dataFunctions.js'
 import { filterNameProduct } from './filterFunctions.js'
-import { getItemsLocalStorage, addItem, removeItem } from './generalFunctions.js'
+import { sale, getItemsLocalStorage, addItem, removeItem } from './generalFunctions.js'
 
 let   nameProducts  = []
 const dataList      = document.getElementById('listid')
@@ -18,7 +18,6 @@ let   spinner       = document.getElementById('spinner')
 window.addEventListener('load', async () => {
 
     const data = await getMainData('http://localhost:3000/')
-    console.log(data)
 
     if ( typeof data === 'string' ) {
         alert(data)
@@ -49,26 +48,4 @@ addItem(parentElement, lateral, listItems, total)
 
 removeItem(listItems, total)
 
-makeSale.addEventListener('click', () => {
-
-    let elements = document.getElementsByTagName('li')
-    
-    if ( elements.length === 0 ) {
-        alert('Estimado cliente, favor agregar productos a su carro.')
-        return
-    }
-
-    let message  = confirm('¿Esta seguro de su compra?')
-    
-    if ( message === true ) {
-        alert(`Su compra de un monto de $ ${total.value} ha sido realizada con exito, vuelva pronto.`)
-        for (let index = elements.length - 1; index >= 0; index--) {
-            listItems.removeChild(elements[index])
-        }
-        localStorage.clear()
-        total.value = '0'
-    } else {
-        alert('Su compra ha sido cancelada.')
-    }
-
-})
+sale(makeSale, listItems, total)
