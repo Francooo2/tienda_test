@@ -6,7 +6,7 @@ const getProducts = async (req, res) => {
 
     await pool.query(sql, (error, results) => {
         if (error) {
-            res.status(404).send('Servicio no disponible.')
+            res.status(500).json({ "message": "Servicio no disponible." })
         } else {
             res.status(200).json(results)
         }
@@ -21,7 +21,7 @@ const getProduct = async (req, res) => {
 
     await pool.query(sql, name, (error, results) => {
         if (error) {
-            res.status(404).send('Servicio no disponible.')
+            res.status(500).json({ "message": "Servicio no disponible." })
         } else {
             res.status(200).json(results)
         }

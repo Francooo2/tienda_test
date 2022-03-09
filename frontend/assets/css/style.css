@@ -149,6 +149,7 @@ body {
     transform       : translateX(-300px);
     transition      : transform .5s ease-in-out;
     box-shadow      : rgba(0, 0, 0, 0.24) 5px 5px 8px;
+    overflow-y      : auto;
 }
 .listItems {
     margin          : 1em 0;
