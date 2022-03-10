@@ -10,7 +10,7 @@ export const getMainData = async (url) => {
 
 }
 
-export const renderCards = (elements, nameArray, list, parent, imgDefault) => {
+export const renderCards = (elements, nameArray, list, parent, imgDefault, select, category) => {
 
     let discount
 
@@ -56,7 +56,15 @@ export const renderCards = (elements, nameArray, list, parent, imgDefault) => {
         opt.value = product.nameProduct
         list.appendChild(opt)
 
+        if ( category.includes(product.nameCategory) === false ) {
+            let opt2           = document.createElement('option')
+            opt2.value     = product.category
+            opt2.innerHTML = product.nameCategory.toUpperCase()
+            select.appendChild(opt2)
+        }
+
         nameArray.push(product.nameProduct)
+        category.push(product.nameCategory)
     }
 
     return nameArray

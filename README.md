@@ -7,7 +7,7 @@ Proyecto de test, que consiste en un servicio de API Rest desarrollado en Node j
 
 Para probar la aplicación, ingrese al siguiente enlace:
 
-[Aplicación en producción](https://adoring-ptolemy-03f6df.netlify.app/)
+[Aplicación en producción](https://wizardly-kalam-733e16.netlify.app/)
 
 ## Consultas a la API Rest 🔧
 
@@ -19,9 +19,13 @@ Consulta un producto.
 
 [Producto](https://www.api-product-test.digital/absolut)
 
+Consulta una categoría.
+
+[Categoría](https://www.api-product-test.digital/category/5)
+
 ## Documentación ⚙️
 
-[Documentación](https://gallant-minsky-ee2a24.netlify.app/)
+[Documentación](https://happy-kowalevski-bcd231.netlify.app/)
 
 ---
 ⌨️ Feliz código, [Franco](https://github.com/Francooo2) 😊

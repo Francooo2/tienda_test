@@ -47,6 +47,20 @@ body {
     font-weight  : bold;
     color        : var(--element-color);
 }
+.header__select {
+    width        : 25%;
+    min-width    : 200px;
+    padding      : 0.3em;
+    margin-top   : 15px;
+    border       : none;
+    border-radius: 15px;
+    box-shadow   : rgba(0, 0, 0, 0.24) 3px 3px 5px,
+    rgba(0, 0, 0, 0.24) -3px -3px 5px;
+    font-family  : 'Hubballi', cursive;
+    font-size    : 1.2rem;
+    font-weight  : bold;
+    color        : var(--element-color);
+}
 .header__ifirst {
     margin: 0.8em 0.5em;
 }
@@ -59,7 +73,7 @@ body {
     transition: transform .2s;
 }
 .main {
-    margin-top: 110px;
+    margin-top: 150px;
     flex      : auto;
 }
 .root {
@@ -229,20 +243,14 @@ li {
     }
 }
 
-@media (max-width: 838px) {
+@media (max-width: 551px) {
     .main {
-        margin-top: 145px;
+        margin-top: 220px;
     }
 }
 
-@media (max-width: 561px) {
+ @media (max-width: 320px) {
     .main {
-        margin-top: 175px;
-    }
-}
-
-@media (max-width: 320px) {
-    .main {
-        margin-top: 200px;
+        margin-top: 250px;
     }
 }
